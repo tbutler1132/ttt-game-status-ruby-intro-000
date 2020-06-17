@@ -37,6 +37,9 @@ def won?(board)
 end
 
 def full?(board)
-  board.any?{|position| position == " "}
+  if board.any?{|position| position == " "}
     return false
-end 
+  else
+    return true
+  end 
+end
