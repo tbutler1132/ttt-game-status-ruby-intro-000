@@ -3,18 +3,15 @@ def position_taken?(board, index)
   !(board[index].nil? || board[index] == " ")
 end
 
-WIN_COMBINATIONS =
-[
-  [0, 1, 2], #top row
-  [3, 4, 5], #middle row
-  [6, 7, 8], #bottom row
-
-  [0, 3, 6], #left column
-  [1, 4, 7], #middle columns
-  [2, 5, 8], #right columns
-
+WIN_COMBINATIONS = [
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
   [0, 4, 8],
-  [2, 4, 6] #diagnal
+  [6, 4, 2]
 ]
 
 def won?(board)
@@ -37,11 +34,7 @@ def won?(board)
 end
 
 def full?(board)
-  if board.any?{|position| position == " "}
-    return false
-  else
-    return true
-  end
+  board.all? {|index| index == "X" || index == "O"}
 end
 
 def draw?(board)
@@ -53,27 +46,23 @@ def draw?(board)
 end
 
 def over?(board)
-  if draw?(board)
-    return true
-  elsif won?(board)
+  if won?(board) || full?(board) || draw?(board)
     return true
   else
     return false
   end
 end
 
-def winner(board)
-
-def winner(board)
-    index = []
-    index = won?(board)
-    if index == false
-      return nil
+def winner (board)
+  index = []
+  index = won?(board)
+  if index == false
+    return nil
+  else
+    if board[index[0]] == "X"
+      return "X"
     else
-      if board[index[0]] == "X"
-        return "X"
-      else
-        return "O"
-      end
+      return "O"
     end
   end
+end
