@@ -64,7 +64,7 @@ end
 
 def winner(board)
 
-def winner (board)
+  def winner (board)
     index = []
     index = won?(board)
     if index == false
@@ -76,4 +76,4 @@ def winner (board)
         return "O"
       end
     end
-end
+  end
